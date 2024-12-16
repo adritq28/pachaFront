@@ -75,8 +75,8 @@ class LoginScreenState extends State<LoginScreen> {
           'newPassword': newPassword,
         },
         options: Options(
-    headers: {"Content-Type": "application/json"},
-  ),
+          headers: {"Content-Type": "application/json"},
+        ),
       );
 
       if (response.statusCode == 200) {
@@ -156,31 +156,31 @@ class LoginScreenState extends State<LoginScreen> {
 
     Dio dio = Dio();
 
-try {
-  Response response = await dio.post(
-    '$url/email/send',
-    data: {'email': email},
-    options: Options(
-      headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    ),
-  );
+    try {
+      Response response = await dio.post(
+        '$url/email/send',
+        data: {'email': email},
+        options: Options(
+          headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        ),
+      );
 
-  if (response.statusCode == 200) {
-    return true;
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Error al enviar el correo electrónico')),
-    );
-    return false;
-  }
-} catch (e) {
-  print('Error al enviar la solicitud: $e');
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text('Error en la conexión')),
-  );
-  return false;
-}
-
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Error al enviar el correo electrónico')),
+        );
+        return false;
+      }
+    } catch (e) {
+      print('Error al enviar la solicitud: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Error en la conexión')),
+      );
+      return false;
+    }
   }
 
   Future<bool> verifyRecoveryCode(
@@ -193,8 +193,8 @@ try {
         url2,
         data: {'email': email, 'code': code},
         options: Options(
-        headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    ),
+          headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        ),
       );
 
       print('Respuesta del servidor: ${response.data}');
@@ -670,50 +670,54 @@ try {
         body: Stack(
           children: [
             const FondoWidget(),
-            Positioned(
-              top: 35,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      _showPasswordDialog(context);
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(Icons.admin_panel_settings,
-                            color: Colors.white),
-                        const SizedBox(height: 5),
-                        Text(
-                          'Admin',
-                          style: GoogleFonts.gantari(
-                            textStyle: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _showPasswordDialog(context);
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(Icons.admin_panel_settings,
                                 color: Colors.white),
-                          ),
+                            const SizedBox(
+                                width: 5),
+                            Text(
+                              'Admin',
+                              style: GoogleFonts.gantari(
+                                textStyle: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                    height: 10),
+                Expanded(
+                  child: Center(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Container(
+                          child: const LoginForm(),
+                        ),
+                        Footer(),
                       ],
                     ),
                   ),
-                  const SizedBox(width: 35),
-                ],
-              ),
-            ),
-            Center(
-              child: SizedBox(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Container(
-                      child: const LoginForm(),
-                    ),
-                    Footer(),
-                  ],
                 ),
-              ),
+              ],
             ),
           ],
         ),

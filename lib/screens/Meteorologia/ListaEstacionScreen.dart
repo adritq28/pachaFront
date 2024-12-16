@@ -7,7 +7,6 @@ import 'package:helvetasfront/Footer.dart';
 import 'package:helvetasfront/screens/Administrador/Meteorologia/EditarMeteorologicaScreen.dart';
 import 'package:helvetasfront/screens/Administrador/Meteorologia/GraficaScreen.dart';
 import 'package:helvetasfront/screens/Administrador/Meteorologia/VisualizarMeteorologicaScreen.dart';
-import 'package:helvetasfront/screens/VoiceTextField.dart';
 import 'package:helvetasfront/screens/perfil/PerfilScreen.dart';
 import 'package:helvetasfront/textos.dart';
 import 'package:helvetasfront/url.dart';
@@ -817,23 +816,44 @@ class ListaEstacionScreenState extends State<ListaEstacionScreen> {
                 isSmallScreen
                     ? Column(
                         children: [
-                          VoiceTextField(
+                          // VoiceTextField(
+                          //   controller: _tempMaxController,
+                          //   labelText: 'Temp Max',
+                          //   icon: Icons.thermostat,
+                          //   style: getTextStyForm(),
+                          //   keyboardType: const TextInputType.numberWithOptions(
+                          //       decimal: true),
+                          //   validator: (value) {
+                          //     if (value == null || value.isEmpty) {
+                          //       return 'Por favor ingresa la temperatura máxima';
+                          //     }
+                          //     final double? tempMax = double.tryParse(value);
+                          //     if (tempMax == null) {
+                          //       return 'Por favor ingresa un número válido';
+                          //     }
+                          //     if (tempMax < -5 || tempMax > 35) {
+                          //       return 'La temperatura debe estar entre -18 y 15';
+                          //     }
+                          //     return null;
+                          //   },
+                          // ),
+                          TextFormField(
                             controller: _tempMaxController,
-                            labelText: 'Temp Max',
-                            icon: Icons.thermostat,
+                            decoration: getInputDecoration(
+                                'Temp Max', Icons.thermostat),
                             style: getTextStyForm(),
                             keyboardType: const TextInputType.numberWithOptions(
                                 decimal: true),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Por favor ingresa la temperatura máxima';
+                                return 'Por favor ingresa la temperatura maxima';
                               }
                               final double? tempMax = double.tryParse(value);
                               if (tempMax == null) {
                                 return 'Por favor ingresa un número válido';
                               }
                               if (tempMax < -5 || tempMax > 35) {
-                                return 'La temperatura debe estar entre -18 y 15';
+                                return 'La temperatura debe estar entre -5 y 35';
                               }
                               return null;
                             },
@@ -866,24 +886,46 @@ class ListaEstacionScreenState extends State<ListaEstacionScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: VoiceTextField(
+                            // child: VoiceTextField(
+                            //   controller: _tempMaxController,
+                            //   labelText: 'Temp Max',
+                            //   icon: Icons.thermostat,
+                            //   style: getTextStyForm(),
+                            //   keyboardType:
+                            //       const TextInputType.numberWithOptions(
+                            //           decimal: true),
+                            //   validator: (value) {
+                            //     if (value == null || value.isEmpty) {
+                            //       return 'Por favor ingresa la temperatura máxima';
+                            //     }
+                            //     final double? tempMax = double.tryParse(value);
+                            //     if (tempMax == null) {
+                            //       return 'Por favor ingresa un número válido';
+                            //     }
+                            //     if (tempMax < -5 || tempMax > 35) {
+                            //       return 'La temperatura debe estar entre -18 y 15';
+                            //     }
+                            //     return null;
+                            //   },
+                            // ),
+                            child: TextFormField(
                               controller: _tempMaxController,
-                              labelText: 'Temp Max',
-                              icon: Icons.thermostat,
+                              decoration: getInputDecoration(
+                                  'Temp Max', Icons.thermostat),
                               style: getTextStyForm(),
                               keyboardType:
                                   const TextInputType.numberWithOptions(
                                       decimal: true),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Por favor ingresa la temperatura máxima';
+                                  return 'Por favor ingresa la temperatura maxima';
                                 }
                                 final double? tempMax = double.tryParse(value);
                                 if (tempMax == null) {
                                   return 'Por favor ingresa un número válido';
                                 }
                                 if (tempMax < -5 || tempMax > 35) {
-                                  return 'La temperatura debe estar entre -18 y 15';
+                                  return 'La temperatura debe estar entre -5 y 35';
                                 }
                                 return null;
                               },
