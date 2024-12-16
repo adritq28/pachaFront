@@ -269,7 +269,6 @@ class AnadirUsuarioScreenState extends State<AnadirUsuarioScreen> {
         SnackBar(content: Text('Ocurrió un error al añadir el usuario')),
       );
     }
-    // Limpiar los controladores
     nombreUsuarioController.clear();
     nombreController.clear();
     apePatController.clear();
@@ -280,19 +279,6 @@ class AnadirUsuarioScreenState extends State<AnadirUsuarioScreen> {
     imagenController.clear();
   }
 }
-
-
-  void _limpiarCampos() {
-    nombreController.clear();
-    apePatController.clear();
-    apeMatController.clear();
-    telefonoController.clear();
-    ciController.clear();
-    correoController.clear();
-    imageBytes = null;
-    imageName = null;
-    imagePath = null;
-  }
 
   Future<void> fetchMunicipio() async {
     try {
