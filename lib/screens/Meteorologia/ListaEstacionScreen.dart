@@ -7,6 +7,7 @@ import 'package:helvetasfront/Footer.dart';
 import 'package:helvetasfront/screens/Administrador/Meteorologia/EditarMeteorologicaScreen.dart';
 import 'package:helvetasfront/screens/Administrador/Meteorologia/GraficaScreen.dart';
 import 'package:helvetasfront/screens/Administrador/Meteorologia/VisualizarMeteorologicaScreen.dart';
+import 'package:helvetasfront/screens/Meteorologia/Banner.dart';
 import 'package:helvetasfront/screens/perfil/PerfilScreen.dart';
 import 'package:helvetasfront/textos.dart';
 import 'package:helvetasfront/url.dart';
@@ -513,56 +514,11 @@ class ListaEstacionScreenState extends State<ListaEstacionScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 10),
-                Container(
-                  height: 70,
-                  color: const Color.fromARGB(91, 4, 18, 43),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 10),
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage("images/${widget.imagen}"),
-                      ),
-                      const SizedBox(width: 15),
-                      Flexible(
-                        child: Wrap(
-                          alignment: WrapAlignment.center,
-                          spacing: 10.0,
-                          runSpacing: 5.0,
-                          children: [
-                            Text("Bienvenid@",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                  color: Colors.white60,
-                                ))),
-                            Text(' ${widget.nombreCompleto}',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                            Text('| Municipio de: ${widget.nombreMunicipio}',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                            Text('| Estacion de: ${widget.nombreEstacion}',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                BannerObs(
+                  imagen: widget.imagen,
+                  nombreCompleto: widget.nombreCompleto,
+                  nombreMunicipio: widget.nombreMunicipio,
+                  nombreEstacion: widget.nombreEstacion,
                 ),
                 const SizedBox(height: 30),
                 Expanded(

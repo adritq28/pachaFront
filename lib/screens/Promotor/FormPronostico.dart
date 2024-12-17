@@ -5,6 +5,7 @@ import 'package:helvetasfront/CustomDrawer.dart';
 import 'package:helvetasfront/CustomNavBar.dart';
 import 'package:helvetasfront/screens/Administrador/Pronosticos/EditarPronosticoScreen.dart';
 import 'package:helvetasfront/screens/Administrador/Pronosticos/VisualizarPronosticoScreen.dart';
+import 'package:helvetasfront/screens/Promotor/BannerProm.dart';
 import 'package:helvetasfront/screens/perfil/PerfilScreen.dart';
 import 'package:helvetasfront/textos.dart';
 import 'package:helvetasfront/url.dart';
@@ -425,64 +426,64 @@ class FormPronosticoState extends State<FormPronostico> {
   }
 
   Future<void> fetchZonas() async {
-  try {
-    final dio = Dio();
+    try {
+      final dio = Dio();
 
-    final response = await dio.get(
-      '$url/datos_pronostico/lista_datos_zona/${widget.idCultivo}',
-    );
+      final response = await dio.get(
+        '$url/datos_pronostico/lista_datos_zona/${widget.idCultivo}',
+      );
 
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonResponse = response.data;
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonResponse = response.data;
 
-      if (jsonResponse.isEmpty) {
-        setState(() {
-          datos = [];
-          datosFiltrados = [];
-          lastFechaRangoDecenal = null;
-        });
-        print('No se encontraron datos.');
-        return;
-      }
-
-      setState(() {
-        datos = List<Map<String, dynamic>>.from(jsonResponse);
-        datosFiltrados = datos;
-        List<DateTime> fechas = datos
-            .map((dato) {
-              try {
-                final fecha = DateTime.parse(dato['fechaRangoDecenal']);
-                return fecha;
-              } catch (e) {
-                print('Error al analizar la fecha: $e');
-                return null;
-              }
-            })
-            .whereType<DateTime>()
-            .toList();
-
-        if (fechas.isNotEmpty) {
-          lastFechaRangoDecenal = fechas.reduce((a, b) => a.isAfter(b) ? a : b);
-        } else {
-          lastFechaRangoDecenal = null;
+        if (jsonResponse.isEmpty) {
+          setState(() {
+            datos = [];
+            datosFiltrados = [];
+            lastFechaRangoDecenal = null;
+          });
+          print('No se encontraron datos.');
+          return;
         }
 
+        setState(() {
+          datos = List<Map<String, dynamic>>.from(jsonResponse);
+          datosFiltrados = datos;
+          List<DateTime> fechas = datos
+              .map((dato) {
+                try {
+                  final fecha = DateTime.parse(dato['fechaRangoDecenal']);
+                  return fecha;
+                } catch (e) {
+                  print('Error al analizar la fecha: $e');
+                  return null;
+                }
+              })
+              .whereType<DateTime>()
+              .toList();
+
+          if (fechas.isNotEmpty) {
+            lastFechaRangoDecenal =
+                fechas.reduce((a, b) => a.isAfter(b) ? a : b);
+          } else {
+            lastFechaRangoDecenal = null;
+          }
+
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Failed to load datos meteorologicos');
+      }
+    } catch (e) {
+      print('Error al obtener zonas: $e');
+      setState(() {
+        datos = [];
+        datosFiltrados = [];
+        lastFechaRangoDecenal = null;
         isLoading = false;
       });
-    } else {
-      throw Exception('Failed to load datos meteorologicos');
     }
-  } catch (e) {
-    print('Error al obtener zonas: $e');
-    setState(() {
-      datos = [];
-      datosFiltrados = [];
-      lastFechaRangoDecenal = null;
-      isLoading = false;
-    });
   }
-}
-
 
   void filtrarDatosPorMes(String? mes) {
     if (mes == null || mes.isEmpty || mes == 'Todos') {
@@ -531,70 +532,32 @@ class FormPronosticoState extends State<FormPronostico> {
         children: [
           const FondoWidget(),
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                Container(
-                  height: 70,
-                  color: const Color.fromARGB(91, 4, 18, 43),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 10),
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage("images/${widget.imagenP}"),
-                      ),
-                      const SizedBox(width: 15),
-                      Flexible(
-                        child: Wrap(
-                          alignment: WrapAlignment.center,
-                          spacing: 10.0,
-                          runSpacing: 5.0,
-                          children: [
-                            Text("Bienvenid@",
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                  color: Colors.white60,
-                                ))),
-                            Text('| ${widget.nombreCompleto}',
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                            Text('| Municipio de: ${widget.nombreZona}',
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                            Text('| Cultivo de: ${widget.nombreCultivo}',
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                BannerProm(
+                  imagenP: widget.imagenP,
+                  nombreCompleto: widget.nombreCompleto,
+                  nombreZona: widget.nombreZona,
+                  nombreCultivo: widget.nombreCultivo,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(children: [
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 20),
                       Text(
                         'REGISTRO DE PRONÓSTICOS DECENALES PARA LAS COMUNIDADES DE LA ZONA ${widget.nombreZona.toUpperCase()} EN EL MUNICIPIO ${widget.nombreMunicipio.toUpperCase()}',
-                        style: GoogleFonts.reemKufiFun(
-                          textStyle: const TextStyle(
+                        style: GoogleFonts.lexend(
+                          textStyle: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: MediaQuery.of(context).size.width < 600
+                                ? 14
+                                : 20,
                           ),
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 20),
                       FutureBuilder<List<Map<String, dynamic>>>(

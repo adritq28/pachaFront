@@ -205,43 +205,37 @@ class MunicipiosScreenState extends State<MunicipiosScreen> {
       body: Column(
         children: [
           const SizedBox(height: 10),
-          Container(
-            height: 90,
-            color: const Color.fromARGB(
-                91, 4, 18, 43),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 10),
-                const CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage("images/47.jpg"),
-                ),
-                const SizedBox(width: 15),
-                Flexible(
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 10.0,
-                    runSpacing: 5.0,
+                Container(
+                  height: 70,
+                  color: const Color.fromARGB(91, 4, 18, 43),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Bienvenido Invitado",
-                          style: GoogleFonts.lexend(
-                              textStyle: const TextStyle(
-                            color: Colors.white60,
-                          ))),
-                      Text('| Lista de Municipios',
-                          style: GoogleFonts.lexend(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12))),
+                      const SizedBox(width: 15),
+                      Flexible(
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          spacing: 10.0,
+                          runSpacing: 5.0,
+                          children: [
+                            Text('Bienvenid@ Invitado| ',
+                                style: GoogleFonts.lexend(
+                                    textStyle: const TextStyle(
+                                  color: Colors.white60,
+                                ))),
+                            Text('| Lista de Municipios',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lexend(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12))),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-
           const SizedBox(height: 10),
           Expanded(
             child: Container(

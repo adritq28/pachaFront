@@ -362,7 +362,7 @@ class ZonasScreenState extends State<ZonasScreen> {
               runSpacing: 5.0,
               children: [
                 Text(
-                  "Bienvenido Invitado",
+                  "Bienvenid@ Invitado",
                   style: GoogleFonts.lexend(
                     textStyle: const TextStyle(
                       color: Colors.white60,

@@ -15,7 +15,8 @@ class EstacionScreen extends StatefulWidget {
   final int idMunicipio;
   final String nombreMunicipio;
 
-  const EstacionScreen({super.key,
+  const EstacionScreen({
+    super.key,
     required this.idMunicipio,
     required this.nombreMunicipio,
   });
@@ -49,8 +50,10 @@ class EstacionScreenState extends State<EstacionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(idUsuario: 0,estado: PerfilEstado.nombreEstacionMunicipio,
-        ),
+      drawer: CustomDrawer(
+        idUsuario: 0,
+        estado: PerfilEstado.nombreEstacionMunicipio,
+      ),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomNavBar(
@@ -69,17 +72,11 @@ class EstacionScreenState extends State<EstacionScreen> {
             children: [
               const SizedBox(height: 10),
               Container(
-                height: 90,
-                color: const Color.fromARGB(
-                    91, 4, 18, 43),
+                height: 70,
+                color: const Color.fromARGB(91, 4, 18, 43),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 10),
-                    const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage("images/47.jpg"),
-                    ),
                     const SizedBox(width: 15),
                     Flexible(
                       child: Wrap(
@@ -87,14 +84,13 @@ class EstacionScreenState extends State<EstacionScreen> {
                         spacing: 10.0,
                         runSpacing: 5.0,
                         children: [
-                          Text("Bienvenido Invitado",
-                          textAlign: TextAlign.center, 
+                          Text('Bienvenid@ |Invitado ',
                               style: GoogleFonts.lexend(
                                   textStyle: const TextStyle(
                                 color: Colors.white60,
                               ))),
                           Text('| Municipio de: ${widget.nombreMunicipio}',
-                          textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
                               style: GoogleFonts.lexend(
                                   textStyle: const TextStyle(
                                       color: Colors.white,

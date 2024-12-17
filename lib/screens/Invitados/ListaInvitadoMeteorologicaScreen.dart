@@ -336,11 +336,6 @@ Future<String> obtNombreObservador(int idEstacion) async {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 10),
-                        const CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage("images/47.jpg"),
-                        ),
                         const SizedBox(width: 15),
                         Flexible(
                           child: Wrap(

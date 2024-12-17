@@ -547,13 +547,13 @@ class OpcionZonaScreenState extends State<OpcionZonaScreen> {
                                     textStyle: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 15))),
+                                        fontSize: 10))),
                             Text('| Municipio de: ${widget.nombreMunicipio}',
                                 style: GoogleFonts.lexend(
                                     textStyle: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 15))),
+                                        fontSize: 10))),
                           ],
                         ),
                       ),

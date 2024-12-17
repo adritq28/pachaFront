@@ -282,135 +282,149 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              content: Container(
-                width: 400,
-                height: 300,
-                alignment: Alignment.center,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    TextField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                        labelText: 'Nombre de usuario',
-                        labelStyle: const TextStyle(
-                            color: Colors.blueGrey, fontSize: 20),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.blueAccent),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.blueAccent),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 30.0, horizontal: 12.0),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      controller: passwordController,
-                      obscureText: _obscureText,
-                      decoration: InputDecoration(
-                        hintText: 'Contraseña',
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.grey,
+              content: SingleChildScrollView(
+                // width: 400,
+                // height: 300,
+                // alignment: Alignment.center,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.6,
+                ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextField(
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                          labelText: 'Nombre de usuario',
+                          labelStyle: const TextStyle(
+                              color: Colors.blueGrey, fontSize: 18),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                        ),
-                        labelStyle: const TextStyle(
-                            color: Colors.blueGrey, fontSize: 20),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.blueAccent),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.blueAccent),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 30.0, horizontal: 12.0),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextButton(
-                      onPressed: () {
-                        _showForgotPasswordDialog(context);
-                      },
-                      child: const Text(
-                        'Olvidé mi contraseña',
-                        style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 16,
-                          decoration: TextDecoration.underline,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 25.0, horizontal: 12.0),
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      TextField(
+                        controller: passwordController,
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          hintText: 'Contraseña',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                          labelStyle: const TextStyle(
+                              color: Colors.blueGrey, fontSize: 18),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: Colors.blueAccent),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 25.0, horizontal: 12.0),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      const SizedBox(width: 10),
+                      TextButton(
+                        onPressed: () {
+                          _showForgotPasswordDialog(context);
+                        },
+                        child: const Text(
+                          'Olvidé mi contraseña',
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               actions: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFd35400),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 20),
-                      ),
-                      child: const Text('Cancelar',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF1abc9c),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 20),
-                      ),
-                      child: const Text('OK',
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                      onPressed: () async {
-                        String nombreUsuario = usernameController.text;
-                        String password = passwordController.text;
-                        Map<String, dynamic> resultadoLogin =
-                            await Provider.of<UsuarioService>(context,
-                                    listen: false)
-                                .login(nombreUsuario, password, context);
+                Wrap(
+  spacing: 10, // Espaciado horizontal entre los botones
+  runSpacing: 10, // Espaciado vertical si los botones bajan de línea
+  alignment: WrapAlignment.center,
+  children: [
+    ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFFd35400),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 15,
+        ),
+      ),
+      child: const Text(
+        'Cancelar',
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+    ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF1abc9c),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20, 
+          vertical: 15,
+        ),
+      ),
+      child: const Text(
+        'OK',
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+      onPressed: () async {
+        String nombreUsuario = usernameController.text;
+        String password = passwordController.text;
+        Map<String, dynamic> resultadoLogin =
+            await Provider.of<UsuarioService>(context, listen: false)
+                .login(nombreUsuario, password, context);
 
-                        if (resultadoLogin['success']) {
-                          int idUsuario = resultadoLogin['idUsuario'];
-                          await _datosService3
-                              .actualizarUltimoAcceso(idUsuario);
-                        }
-                        usernameController.clear();
-                        passwordController.clear();
-                      },
-                    ),
-                  ],
-                ),
+        if (resultadoLogin['success']) {
+          int idUsuario = resultadoLogin['idUsuario'];
+          await _datosService3.actualizarUltimoAcceso(idUsuario);
+        }
+        usernameController.clear();
+        passwordController.clear();
+      },
+    ),
+  ],
+)
+
               ],
             );
           },

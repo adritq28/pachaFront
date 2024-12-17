@@ -68,7 +68,6 @@ class PromotorScreenState extends State<PromotorScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 10),
-                const SizedBox(height: 10),
                 Container(
                   height: 70,
                   color: const Color.fromARGB(

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:helvetasfront/model/DatosPronostico.dart';
 import 'package:helvetasfront/model/Fenologia.dart';
 import 'package:helvetasfront/url.dart';
@@ -17,22 +17,44 @@ class FenologiaService extends ChangeNotifier {
 
   final Dio dio = Dio();
 
+  // Future<List<DatosPronostico>> pronosticoCultivo(int idCultivo) async {
+  //   try {
+  //     final response = await dio.get('$url/datos_pronostico/registro/$idCultivo');
+  //     if (response.statusCode == 200) {
+  //       List<dynamic> jsonData = response.data;
+  //       if (jsonData.isEmpty) {
+  //         return [];
+  //       }
+  //       return jsonData.map((item) => DatosPronostico.fromJson(item)).toList();
+  //     } else {
+  //       throw Exception('Error al obtener datos del observador');
+  //     }
+  //   } catch (e) {
+  //     throw Exception('Error al obtener pronóstico: $e');
+  //   }
+  // }
+
   Future<List<DatosPronostico>> pronosticoCultivo(int idCultivo) async {
-    try {
-      final response = await dio.get('$url/datos_pronostico/registro/$idCultivo');
-      if (response.statusCode == 200) {
-        List<dynamic> jsonData = response.data;
-        if (jsonData.isEmpty) {
-          return [];
-        }
-        return jsonData.map((item) => DatosPronostico.fromJson(item)).toList();
-      } else {
-        throw Exception('Error al obtener datos del observador');
+  try {
+    final response = await dio.get('$url/datos_pronostico/registro/$idCultivo');
+    if (response.statusCode == 200) {
+      List<dynamic> jsonData = response.data;
+      if (jsonData.isEmpty) {
+        return [];
       }
-    } catch (e) {
-      throw Exception('Error al obtener pronóstico: $e');
+      return await compute(_parsePronostico, jsonData);
+    } else {
+      throw Exception('Error al obtener datos del observador');
     }
+  } catch (e) {
+    throw Exception('Error al obtener pronóstico: $e');
   }
+}
+
+List<DatosPronostico> _parsePronostico(List<dynamic> jsonData) {
+  return jsonData.map((item) => DatosPronostico.fromJson(item)).toList();
+}
+
 
   Future<void> obtenerPronosticosFase(int cultivoId) async {
     try {

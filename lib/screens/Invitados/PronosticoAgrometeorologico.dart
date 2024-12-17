@@ -232,12 +232,6 @@ class PronosticoAgrometeorologicoState
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const SizedBox(height: 10),
-                                  const CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage:
-                                        AssetImage("images/47.jpg"),
-                                  ),
                                   const SizedBox(width: 15),
                                   Flexible(
                                     child: Wrap(
@@ -256,22 +250,20 @@ class PronosticoAgrometeorologicoState
                                                 textStyle: const TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 12))),
+                                                    fontSize: 10))),
                                         Text('| Zona: ${widget.nombreZona}',
                                             style: GoogleFonts.lexend(
                                                 textStyle: const TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 12))),
+                                                    fontSize: 10))),
                                         Text(
-                                            ' | Cultivo de ' +
-                                                miModelo5
-                                                    .lista11[0].nombreCultivo,
+                                            ' | Cultivo de ${miModelo5.lista11[0].nombreCultivo}',
                                             style: GoogleFonts.lexend(
                                                 textStyle: const TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 12))),
+                                                    fontSize: 10))),
                                       ],
                                     ),
                                   ),
@@ -290,15 +282,15 @@ class PronosticoAgrometeorologicoState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'COMUNIDADES DE LA ZONA ' +
-                                  widget.nombreZona.toUpperCase() +
-                                  ' EN EL MUNICIPIO ' +
-                                  widget.nombreMunicipio.toUpperCase(),
-                              style: GoogleFonts.reemKufiFun(
-                                textStyle: const TextStyle(
+                              'COMUNIDADES DE LA ZONA ${widget.nombreZona.toUpperCase()} EN EL MUNICIPIO ${widget.nombreMunicipio.toUpperCase()}',
+                              style: GoogleFonts.lexend(
+                                textStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width < 600
+                                          ? 14
+                                          : 20,
                                 ),
                               ),
                               textAlign: TextAlign.center,
@@ -430,11 +422,14 @@ class PronosticoAgrometeorologicoState
                           children: [
                             Text(
                               'PRONOSTICO AGROMETEOROLOGICO',
-                              style: GoogleFonts.reemKufiFun(
-                                textStyle: const TextStyle(
+                              style: GoogleFonts.lexend(
+                                textStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width < 600
+                                          ? 14
+                                          : 20,
                                 ),
                               ),
                               textAlign: TextAlign.center,
@@ -636,11 +631,14 @@ class PronosticoAgrometeorologicoState
                           children: [
                             Text(
                               'PRONOSTICO EN LOS PROXIMOS 10 DIAS',
-                              style: GoogleFonts.reemKufiFun(
-                                textStyle: const TextStyle(
+                              style: GoogleFonts.lexend(
+                                textStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width < 600
+                                          ? 14
+                                          : 20,
                                 ),
                               ),
                               textAlign: TextAlign.center,
@@ -687,14 +685,16 @@ class PronosticoAgrometeorologicoState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'FENOLOGIA DE ' +
-                                  miModelo5.lista11[0].nombreCultivo
-                                      .toUpperCase(),
-                              style: GoogleFonts.reemKufiFun(
-                                textStyle: const TextStyle(
+                              'FENOLOGIA DE ${miModelo5.lista11[0].nombreCultivo
+                                      .toUpperCase()}',
+                              style: GoogleFonts.lexend(
+                                textStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width < 600
+                                          ? 14
+                                          : 20,
                                 ),
                               ),
                               textAlign: TextAlign.center,
@@ -775,7 +775,7 @@ class PronosticoAgrometeorologicoState
                                             const SizedBox(height: 10),
                                             Center(
                                               child: Text(
-                                                '${dato.descripcion}',
+                                                dato.descripcion,
                                                 style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18,
@@ -852,11 +852,14 @@ class PronosticoAgrometeorologicoState
                           children: [
                             Text(
                               'UMBRALES',
-                              style: GoogleFonts.reemKufiFun(
-                                textStyle: const TextStyle(
+                              style: GoogleFonts.lexend(
+                                textStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width < 600
+                                          ? 14
+                                          : 20,
                                 ),
                               ),
                               textAlign: TextAlign.center,
@@ -874,7 +877,7 @@ class PronosticoAgrometeorologicoState
                           color: const Color.fromARGB(106, 0, 0, 0),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 40.0),
-                            child: Container(
+                            child: SizedBox(
                               width: 1200,
                               height: 500,
                               child: crearGrafica3(
@@ -894,7 +897,7 @@ class PronosticoAgrometeorologicoState
                           color: const Color.fromARGB(106, 0, 0, 0),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 40.0),
-                            child: Container(
+                            child: SizedBox(
                               width: 800,
                               height: 500,
                               child: crearGraficaPCPN(miModelo5.lista11),
@@ -948,7 +951,7 @@ class PronosticoAgrometeorologicoState
       children: [
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Container(
+          child: SizedBox(
             height: 400,
             width: 1200,
             child: LineChart(
@@ -1051,7 +1054,6 @@ class PronosticoAgrometeorologicoState
                   ),
                 ),
                 minX: 0,
-                //maxX: datosList.length.toDouble() - 1,
                 maxX: datosList.isNotEmpty
                     ? (datosList.length - 1).toDouble()
                     : datosList.length.toDouble() - 1,
@@ -1149,7 +1151,6 @@ class PronosticoAgrometeorologicoState
                   ),
                 ),
                 minX: 0,
-                //maxX: datosList.length.toDouble() - 1,
                 maxX: datosList.isNotEmpty
                     ? (datosList.length - 1).toDouble()
                     : datosList.length.toDouble() - 1,
