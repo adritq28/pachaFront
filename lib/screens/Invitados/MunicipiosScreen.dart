@@ -205,37 +205,37 @@ class MunicipiosScreenState extends State<MunicipiosScreen> {
       body: Column(
         children: [
           const SizedBox(height: 10),
-                Container(
-                  height: 70,
-                  color: const Color.fromARGB(91, 4, 18, 43),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          Container(
+            height: 70,
+            color: const Color.fromARGB(91, 4, 18, 43),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(width: 15),
+                Flexible(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10.0,
+                    runSpacing: 5.0,
                     children: [
-                      const SizedBox(width: 15),
-                      Flexible(
-                        child: Wrap(
-                          alignment: WrapAlignment.center,
-                          spacing: 10.0,
-                          runSpacing: 5.0,
-                          children: [
-                            Text('Bienvenid@ Invitado| ',
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                  color: Colors.white60,
-                                ))),
-                            Text('| Lista de Municipios',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lexend(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12))),
-                          ],
-                        ),
-                      ),
+                      Text('Bienvenid@ Invitado| ',
+                          style: GoogleFonts.lexend(
+                              textStyle: const TextStyle(
+                            color: Colors.white60,
+                          ))),
+                      Text('| Lista de Municipios',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.lexend(
+                              textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10))),
                     ],
                   ),
                 ),
+              ],
+            ),
+          ),
           const SizedBox(height: 10),
           Expanded(
             child: Container(
@@ -250,128 +250,148 @@ class MunicipiosScreenState extends State<MunicipiosScreen> {
   }
 
   Widget op2(BuildContext context) {
-  return SingleChildScrollView(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: miModelo4.lista114.length,
-            itemBuilder: (context, index) {
-              final dato = miModelo4.lista114[index];
-              return GestureDetector(
-                onTap: () {
-                  _mostrarModal(dato.idMunicipio, dato.nombreMunicipio);
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10,
-                        offset: Offset(0, 5),
-                      ),
-                    ],
-                    image: DecorationImage(
-                        image: AssetImage(
-                            "images/${dato.imagen}"),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: miModelo4.lista114.length,
+              itemBuilder: (context, index) {
+                final dato = miModelo4.lista114[index];
+                return GestureDetector(
+                  onTap: () {
+                    _mostrarModal(dato.idMunicipio, dato.nombreMunicipio);
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 10,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                      image: DecorationImage(
+                        image: AssetImage("images/${dato.imagen}"),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
                           Colors.black.withOpacity(0.4),
-                        BlendMode.darken,
+                          BlendMode.darken,
                         ),
                       ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        dato.nombreMunicipio,
-                        style: GoogleFonts.lexend(
-                          textStyle: const TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 255, 209, 103),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(
-                            Icons.info_outline,
-                            color: Colors.white70,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            "Más información",
-                            style: GoogleFonts.lexend(
-                              textStyle: const TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.w400,
-                              ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          dato.nombreMunicipio,
+                          style: GoogleFonts.lexend(
+                            textStyle: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            width: 220,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                _mostrarModal(dato.idMunicipio, dato.nombreMunicipio);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFbb8fce),
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(
+                              Icons.info_outline,
+                              color: Colors.white70,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              "Más información",
+                              style: GoogleFonts.lexend(
+                                textStyle: const TextStyle(
+                                  color: Colors.white70,
+                                  fontWeight: FontWeight.w400,
                                 ),
-                                elevation: 5,
-                                shadowColor: Colors.purpleAccent,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.check_circle_outline, size: 20, color: Colors.white,),
-                                  const SizedBox(width: 10),
-                                  Text(
-                                    'Seleccionar Opción',
-                                    style: GoogleFonts.lexend(
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Flexible(
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width > 600
+                                    ? 220
+                                    : 150,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    _mostrarModal(
+                                        dato.idMunicipio, dato.nombreMunicipio);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFFbb8fce),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    elevation: 5,
+                                    shadowColor: Colors.purpleAccent,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.check_circle_outline,
+                                        size:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? 20
+                                                : 16,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        'Seleccionar Opción',
+                                        style: GoogleFonts.lexend(
+                                          textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width >
+                                                    600
+                                                ? 16
+                                                : 12,
+                                          ),
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 }

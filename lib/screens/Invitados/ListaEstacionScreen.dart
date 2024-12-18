@@ -95,7 +95,7 @@ class EstacionScreenState extends State<EstacionScreen> {
                                   textStyle: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 12))),
+                                      fontSize: 10))),
                         ],
                       ),
                     ),

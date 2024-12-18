@@ -525,11 +525,6 @@ class OpcionZonaScreenState extends State<OpcionZonaScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 10),
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage("images/${widget.imagen}"),
-                      ),
                       const SizedBox(width: 15),
                       Flexible(
                         child: Wrap(

@@ -353,14 +353,14 @@ Future<String> obtNombreObservador(int idEstacion) async {
                                       textStyle: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 12))),
+                                          fontSize: 10))),
                               Text(
                                   '| Estación Meteorológica: ${widget.nombreEstacion}',
                                   style: GoogleFonts.lexend(
                                       textStyle: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 12))),
+                                          fontSize: 10))),
                             ],
                           ),
                         ),

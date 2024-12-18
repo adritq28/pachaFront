@@ -13,9 +13,11 @@ import 'package:helvetasfront/Utils/mobile_utils.dart';
 import 'package:helvetasfront/model/DatosPronostico.dart';
 import 'package:helvetasfront/model/Fenologia.dart';
 import 'package:helvetasfront/model/HistFechaSiembra.dart';
+import 'package:helvetasfront/screens/Invitados/BannerInv.dart';
 import 'package:helvetasfront/screens/perfil/PerfilScreen.dart';
 import 'package:helvetasfront/services/FenologiaService.dart';
 import 'package:helvetasfront/textos.dart';
+import 'package:helvetasfront/textos/Titulos.dart';
 import 'package:helvetasfront/url.dart';
 import 'package:helvetasfront/util/fondo.dart';
 import 'package:intl/intl.dart';
@@ -226,79 +228,25 @@ class PronosticoAgrometeorologicoState
                         child: Column(
                           children: [
                             const SizedBox(height: 10),
-                            Container(
-                              height: 90,
-                              color: const Color.fromARGB(91, 4, 18, 43),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const SizedBox(width: 15),
-                                  Flexible(
-                                    child: Wrap(
-                                      alignment: WrapAlignment.center,
-                                      spacing: 10.0,
-                                      runSpacing: 5.0,
-                                      children: [
-                                        Text("Bienvenido Invitado",
-                                            style: GoogleFonts.lexend(
-                                                textStyle: const TextStyle(
-                                              color: Colors.white60,
-                                            ))),
-                                        Text(
-                                            '| Municipio de: ${widget.nombreMunicipio}',
-                                            style: GoogleFonts.lexend(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 10))),
-                                        Text('| Zona: ${widget.nombreZona}',
-                                            style: GoogleFonts.lexend(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 10))),
-                                        Text(
-                                            ' | Cultivo de ${miModelo5.lista11[0].nombreCultivo}',
-                                            style: GoogleFonts.lexend(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 10))),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            BannerInv(
+                              nombreMunicipio: widget.nombreMunicipio,
+                              nombreZona: widget.nombreZona,
+                              nombreCultivo: miModelo5.lista11[0].nombreCultivo,
                             ),
+                            
                           ],
                         ),
                       ),
-                      const SizedBox(height: 25),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'COMUNIDADES DE LA ZONA ${widget.nombreZona.toUpperCase()} EN EL MUNICIPIO ${widget.nombreMunicipio.toUpperCase()}',
-                              style: GoogleFonts.lexend(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width < 600
-                                          ? 14
-                                          : 20,
-                                ),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
+                      const SizedBox(height: 10),
+                      Titulo(
+                        title:
+                            'COMUNIDADES DE LA ZONA ${widget.nombreZona.toUpperCase()} EN EL MUNICIPIO ${widget.nombreMunicipio.toUpperCase()}',
                       ),
                       const SizedBox(height: 20),
+      //                 ComunidadesListWidget(
+      //   fetchComunidades: fetchComunidades,
+      //   idZona: widget.idZona,
+      // ),
                       FutureBuilder<List<Map<String, dynamic>>>(
                         future: fetchComunidades(widget.idZona),
                         builder: (context, snapshot) {
@@ -413,29 +361,8 @@ class PronosticoAgrometeorologicoState
                           }
                         },
                       ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'PRONOSTICO AGROMETEOROLOGICO',
-                              style: GoogleFonts.lexend(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width < 600
-                                          ? 14
-                                          : 20,
-                                ),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
+                      const Titulo(
+                        title: 'PRONOSTICO AGROMETEOROLOGICO',
                       ),
                       if (_futureUltimaAlerta != null)
                         Center(
@@ -622,29 +549,8 @@ class PronosticoAgrometeorologicoState
                           ),
                         ),
                       const SizedBox(height: 10),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'PRONOSTICO EN LOS PROXIMOS 10 DIAS',
-                              style: GoogleFonts.lexend(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width < 600
-                                          ? 14
-                                          : 20,
-                                ),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
+                      const Titulo(
+                        title: 'PRONOSTICO EN LOS PROXIMOS 10 DIAS',
                       ),
                       FutureBuilder<List<DatosPronostico>>(
                         future: miModelo5
@@ -685,8 +591,7 @@ class PronosticoAgrometeorologicoState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'FENOLOGIA DE ${miModelo5.lista11[0].nombreCultivo
-                                      .toUpperCase()}',
+                              'FENOLOGIA DE ${miModelo5.lista11[0].nombreCultivo.toUpperCase()}',
                               style: GoogleFonts.lexend(
                                 textStyle: TextStyle(
                                   color: Colors.white,
@@ -816,7 +721,7 @@ class PronosticoAgrometeorologicoState
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           const SizedBox(width: 5),
-                          Container(
+                          SizedBox(
                             width: 300,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20.0),
@@ -843,29 +748,8 @@ class PronosticoAgrometeorologicoState
                           ),
                         ],
                       ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'UMBRALES',
-                              style: GoogleFonts.lexend(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width < 600
-                                          ? 14
-                                          : 20,
-                                ),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
+                      const Titulo(
+                        title: 'UMBRALES',
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -919,169 +803,167 @@ class PronosticoAgrometeorologicoState
     );
   }
 
-  Widget crearGrafica3(
-      List<Fenologia> datosList, List<DatosPronostico> datosPronostico) {
-    List<FlSpot> tempMinSpots = [];
-    List<FlSpot> tempOptMinSpots = [];
-    List<FlSpot> umbInfSpots = [];
-    List<FlSpot> umbSupSpots = [];
-    List<FlSpot> tempOptMaxSpots = [];
-    List<FlSpot> tempMaxSpots = [];
 
-    List<FlSpot> tempMinSpots2 = [];
-    List<FlSpot> tempMaxSpots2 = [];
-    for (int i = 0; i < datosList.length; i++) {
-      tempMinSpots.add(FlSpot(i.toDouble(), datosList[i].tempMin));
-      tempOptMinSpots.add(FlSpot(i.toDouble(), datosList[i].tempOptMin));
-      umbInfSpots.add(FlSpot(i.toDouble(), datosList[i].umbInf));
-      umbSupSpots.add(FlSpot(i.toDouble(), datosList[i].umbSup));
-      tempOptMaxSpots.add(FlSpot(i.toDouble(), datosList[i].tempOptMax));
-      tempMaxSpots.add(FlSpot(i.toDouble(), datosList[i].tempMax));
-    }
+  Widget crearGrafica3(List<Fenologia> datosList, List<DatosPronostico> datosPronostico) {
+  List<FlSpot> tempMinSpots = [];
+  List<FlSpot> tempOptMinSpots = [];
+  List<FlSpot> umbInfSpots = [];
+  List<FlSpot> umbSupSpots = [];
+  List<FlSpot> tempOptMaxSpots = [];
+  List<FlSpot> tempMaxSpots = [];
 
-    for (int j = 0; j < datosPronostico.length; j++) {
-      double xScaled =
-          (j / (datosPronostico.length - 1)) * (miModelo5.faseActual - 1);
+  List<FlSpot> tempMinSpots2 = [];
+  List<FlSpot> tempMaxSpots2 = [];
+
+  for (int i = 0; i < datosList.length; i++) {
+    tempMinSpots.add(FlSpot(i.toDouble(), datosList[i].tempMin));
+    tempOptMinSpots.add(FlSpot(i.toDouble(), datosList[i].tempOptMin));
+    umbInfSpots.add(FlSpot(i.toDouble(), datosList[i].umbInf));
+    umbSupSpots.add(FlSpot(i.toDouble(), datosList[i].umbSup));
+    tempOptMaxSpots.add(FlSpot(i.toDouble(), datosList[i].tempOptMax));
+    tempMaxSpots.add(FlSpot(i.toDouble(), datosList[i].tempMax));
+  }
+
+  for (int j = 0; j < datosPronostico.length; j++) {
+    if (datosPronostico.length > 1 && miModelo5.faseActual > 1) {
+      double xScaled = (j / (datosPronostico.length - 1)) * (miModelo5.faseActual - 1);
       tempMinSpots2.add(FlSpot(xScaled, datosPronostico[j].tempMin));
       tempMaxSpots2.add(FlSpot(xScaled, datosPronostico[j].tempMax));
     }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: SizedBox(
-            height: 400,
-            width: 1200,
-            child: LineChart(
-              LineChartData(
-                lineBarsData: [
-                  LineChartBarData(
-                    spots: tempMinSpots2,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [const Color.fromARGB(255, 201, 173, 255)],
-                    belowBarData: BarAreaData(show: true),
-                  ),
-                  LineChartBarData(
-                    spots: tempMaxSpots2,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [const Color.fromARGB(255, 143, 211, 147)],
-                    belowBarData: BarAreaData(show: true),
-                  ),
-                  LineChartBarData(
-                    spots: tempMinSpots,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [Colors.blue],
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                  LineChartBarData(
-                    spots: tempOptMinSpots,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [Colors.green],
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                  LineChartBarData(
-                    spots: umbInfSpots,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [Colors.orange],
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                  LineChartBarData(
-                    spots: umbSupSpots,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [Colors.red],
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                  LineChartBarData(
-                    spots: tempOptMaxSpots,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [Colors.purple],
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                  LineChartBarData(
-                    spots: tempMaxSpots,
-                    isCurved: true,
-                    barWidth: 2,
-                    colors: [Colors.yellow],
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                ],
-                titlesData: FlTitlesData(
-                  bottomTitles: SideTitles(
-                    showTitles: true,
-                    reservedSize: 40,
-                    interval: 1,
-                    getTitles: (value) {
-                      return (value.toInt() < datosList.length
-                          ? 'Fase ${datosList[value.toInt()].fase}'
-                          : '');
-                    },
-                    getTextStyles: (context, value) => const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  leftTitles: SideTitles(
-                    showTitles: true,
-                    reservedSize: 40,
-                    interval: 10,
-                    getTitles: (value) {
-                      return value.toString();
-                    },
-                    getTextStyles: (context, value) => const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                gridData: FlGridData(show: true),
-                borderData: FlBorderData(show: true),
-                lineTouchData: LineTouchData(
-                  enabled: true,
-                  touchTooltipData: LineTouchTooltipData(
-                    tooltipBgColor: const Color.fromARGB(255, 12, 70, 170),
-                    tooltipRoundedRadius: 8,
-                    fitInsideHorizontally: true,
-                    fitInsideVertically: true,
-                  ),
-                ),
-                minX: 0,
-                maxX: datosList.isNotEmpty
-                    ? (datosList.length - 1).toDouble()
-                    : datosList.length.toDouble() - 1,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 900),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildLegendItem(Colors.blue, 'Temp Min'),
-                _buildLegendItem(Colors.green, 'Temp Opt Min'),
-                _buildLegendItem(Colors.orange, 'Umb Inf'),
-                _buildLegendItem(Colors.red, 'Umb Sup'),
-                _buildLegendItem(Colors.purple, 'Temp Opt Max'),
-                _buildLegendItem(Colors.yellow, 'Temp Max'),
-                _buildLegendItem(Colors.brown, 'Temp Max Alt'),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
   }
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Container(
+          height: 400,
+          width: 1200,
+          child: LineChart(
+            LineChartData(
+              lineBarsData: [
+                LineChartBarData(
+                  spots: tempMinSpots2,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [const Color.fromARGB(255, 201, 173, 255)],
+                  belowBarData: BarAreaData(show: true),
+                ),
+                LineChartBarData(
+                  spots: tempMaxSpots2,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [const Color.fromARGB(255, 143, 211, 147)],
+                  belowBarData: BarAreaData(show: true),
+                ),
+                LineChartBarData(
+                  spots: tempMinSpots,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [Colors.blue],
+                  belowBarData: BarAreaData(show: false),
+                ),
+                LineChartBarData(
+                  spots: tempOptMinSpots,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [Colors.green],
+                  belowBarData: BarAreaData(show: false),
+                ),
+                LineChartBarData(
+                  spots: umbInfSpots,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [Colors.orange],
+                  belowBarData: BarAreaData(show: false),
+                ),
+                LineChartBarData(
+                  spots: umbSupSpots,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [Colors.red],
+                  belowBarData: BarAreaData(show: false),
+                ),
+                LineChartBarData(
+                  spots: tempOptMaxSpots,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [Colors.purple],
+                  belowBarData: BarAreaData(show: false),
+                ),
+                LineChartBarData(
+                  spots: tempMaxSpots,
+                  isCurved: true,
+                  barWidth: 2,
+                  colors: [Colors.yellow],
+                  belowBarData: BarAreaData(show: false),
+                ),
+              ],
+              titlesData: FlTitlesData(
+                bottomTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 40,
+                  interval: 1,
+                  getTitles: (value) {
+                    return (value.toInt() < datosList.length ? 'Fase ${datosList[value.toInt()].fase}' : '');
+                  },
+                  getTextStyles: (context, value) => const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                leftTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 40,
+                  interval: 10,
+                  getTitles: (value) {
+                    return value.toString();
+                  },
+                  getTextStyles: (context, value) => const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              gridData: FlGridData(show: true),
+              borderData: FlBorderData(show: true),
+              lineTouchData: LineTouchData(
+                enabled: true,
+                touchTooltipData: LineTouchTooltipData(
+                  tooltipBgColor: const Color.fromARGB(255, 12, 70, 170),
+                  tooltipRoundedRadius: 8,
+                  fitInsideHorizontally: true,
+                  fitInsideVertically: true,
+                ),
+              ),
+              minX: 0,
+              maxX: datosList.length.toDouble() - 1,
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(height: 10),
+      Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 900),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildLegendItem(Colors.blue, 'Temp Min'),
+              _buildLegendItem(Colors.green, 'Temp Opt Min'),
+              _buildLegendItem(Colors.orange, 'Umb Inf'),
+              _buildLegendItem(Colors.red, 'Umb Sup'),
+              _buildLegendItem(Colors.purple, 'Temp Opt Max'),
+              _buildLegendItem(Colors.yellow, 'Temp Max'),
+              _buildLegendItem(Colors.brown, 'Temp Max Alt'),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
 
   Widget crearGraficaPCPN(List<Fenologia> datosList) {
     List<FlSpot> pcpnSpots = [];
@@ -1151,9 +1033,7 @@ class PronosticoAgrometeorologicoState
                   ),
                 ),
                 minX: 0,
-                maxX: datosList.isNotEmpty
-                    ? (datosList.length - 1).toDouble()
-                    : datosList.length.toDouble() - 1,
+                maxX: datosList.length.toDouble() - 1,
               ),
             ),
           ),
@@ -1173,6 +1053,7 @@ class PronosticoAgrometeorologicoState
       ],
     );
   }
+
 
   Widget _buildLegendItem(Color color, String label) {
     return Padding(

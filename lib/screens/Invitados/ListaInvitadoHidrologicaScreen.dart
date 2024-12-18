@@ -316,11 +316,11 @@ Future<void> fetchDatosHidrologico() async {
                                             textStyle: const TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 12))),
+                                                fontSize: 10))),
                               Text(
                                 '| Estación Hidrológica: ${widget.nombreEstacion}',
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10,
                                   color: Color.fromARGB(208, 255, 255, 255),
                                   fontWeight: FontWeight.bold,
                                   

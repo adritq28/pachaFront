@@ -288,8 +288,8 @@ class LoginScreenState extends State<LoginScreen> {
                 // alignment: Alignment.center,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height * 0.6,
-                ),
+                    maxHeight: MediaQuery.of(context).size.height * 0.6,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -369,62 +369,64 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               actions: [
                 Wrap(
-  spacing: 10, // Espaciado horizontal entre los botones
-  runSpacing: 10, // Espaciado vertical si los botones bajan de línea
-  alignment: WrapAlignment.center,
-  children: [
-    ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFFd35400),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 15,
-        ),
-      ),
-      child: const Text(
-        'Cancelar',
-        style: TextStyle(color: Colors.white, fontSize: 16),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    ),
-    ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF1abc9c),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20, 
-          vertical: 15,
-        ),
-      ),
-      child: const Text(
-        'OK',
-        style: TextStyle(color: Colors.white, fontSize: 16),
-      ),
-      onPressed: () async {
-        String nombreUsuario = usernameController.text;
-        String password = passwordController.text;
-        Map<String, dynamic> resultadoLogin =
-            await Provider.of<UsuarioService>(context, listen: false)
-                .login(nombreUsuario, password, context);
+                  spacing: 10, // Espaciado horizontal entre los botones
+                  runSpacing:
+                      10, // Espaciado vertical si los botones bajan de línea
+                  alignment: WrapAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFd35400),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 15,
+                        ),
+                      ),
+                      child: const Text(
+                        'Cancelar',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF1abc9c),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 15,
+                        ),
+                      ),
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      onPressed: () async {
+                        String nombreUsuario = usernameController.text;
+                        String password = passwordController.text;
+                        Map<String, dynamic> resultadoLogin =
+                            await Provider.of<UsuarioService>(context,
+                                    listen: false)
+                                .login(nombreUsuario, password, context);
 
-        if (resultadoLogin['success']) {
-          int idUsuario = resultadoLogin['idUsuario'];
-          await _datosService3.actualizarUltimoAcceso(idUsuario);
-        }
-        usernameController.clear();
-        passwordController.clear();
-      },
-    ),
-  ],
-)
-
+                        if (resultadoLogin['success']) {
+                          int idUsuario = resultadoLogin['idUsuario'];
+                          await _datosService3
+                              .actualizarUltimoAcceso(idUsuario);
+                        }
+                        usernameController.clear();
+                        passwordController.clear();
+                      },
+                    ),
+                  ],
+                )
               ],
             );
           },
@@ -687,10 +689,22 @@ class LoginScreenState extends State<LoginScreen> {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 15),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Container(
+                        width: 100,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: AssetImage("images/senamhi.png"),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                       InkWell(
                         onTap: () {
                           _showPasswordDialog(context);
@@ -699,15 +713,15 @@ class LoginScreenState extends State<LoginScreen> {
                           children: [
                             const Icon(Icons.admin_panel_settings,
                                 color: Colors.white),
-                            const SizedBox(
-                                width: 5),
+                            const SizedBox(width: 5),
                             Text(
                               'Admin',
                               style: GoogleFonts.gantari(
                                 textStyle: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],
@@ -716,16 +730,13 @@ class LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                    height: 10),
+                const SizedBox(height: 10),
                 Expanded(
                   child: Center(
                     child: ListView(
                       shrinkWrap: true,
                       children: [
-                        Container(
-                          child: const LoginForm(),
-                        ),
+                        const LoginForm(),
                         Footer(),
                       ],
                     ),
@@ -885,7 +896,7 @@ class LoginForm extends StatelessWidget {
               color: Color(0xFF164092),
             ),
             label: Text(
-              "Entrar como invitado",
+              "Invitado",
               style: GoogleFonts.lexend(
                 textStyle: const TextStyle(
                   fontSize: 18,

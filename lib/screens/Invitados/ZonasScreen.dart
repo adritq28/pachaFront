@@ -375,7 +375,7 @@ class ZonasScreenState extends State<ZonasScreen> {
                     textStyle: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                      fontSize: 10,
                     ),
                   ),
                 ),
@@ -385,7 +385,7 @@ class ZonasScreenState extends State<ZonasScreen> {
                     textStyle: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                      fontSize: 10,
                     ),
                   ),
                 ),
